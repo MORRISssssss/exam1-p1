@@ -11,7 +11,7 @@ const float _C3=130.8;
 
 const double pi = 3.141592653589793238462;
 const double amplitude = 1.f;
-const double offset = 65535. / 3;
+const double offset = 65535. / 2;
 
 AnalogOut aout(PA_4);
 
@@ -22,7 +22,7 @@ int main()
     uint16_t sample[128];
     int count = 0;
     for (int i = 0; i < 128; i++){
-        rads = (pi * i) / 180.0f;
+        rads = 2 * pi * i / 128;
         sample[i] = (uint16_t)(amplitude * (offset * (cos(rads + pi))) + offset);
     }
     
