@@ -45,7 +45,7 @@ int main()
         for (int i = 0; i < 128; i++){
             aout.write_u16(sample[i] * amplitude[cnt2]);
             cnt1++;
-            if (cnt1 == (int)(freq * 128 / 200 / 20)){
+            if (cnt1 == (int)(freq * 128 / 200 / 5)){
                 cnt1 = 0;
                 cnt2++;
             }
