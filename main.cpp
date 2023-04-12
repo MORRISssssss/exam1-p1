@@ -10,7 +10,6 @@ const float _D3=146.8;
 const float _C3=130.8;
 
 const double pi = 3.141592653589793238462;
-const double amplitude = 1.f;
 const double offset = 65535. / 2;
 
 AnalogOut aout(PA_4);
@@ -20,16 +19,20 @@ int main()
 {
     double rads = 0.0;
     uint16_t sample[128];
+    double amplitude = 1.f;
     int count = 0;
     for (int i = 0; i < 128; i++){
         rads = 2 * pi * i / 128;
         sample[i] = (uint16_t)(amplitude * (offset * (cos(rads + pi))) + offset);
     }
     
+    int wait_time = 0;
+    wait_time = 1000000 / _C4 / 128;
+
     while (true) {
         for (int i = 0; i < 128; i++){
             aout.write_u16(sample[i]);
-            ThisThread::sleep_for(10ms);
+            wait_us(wait_time);
         }
         
     }
